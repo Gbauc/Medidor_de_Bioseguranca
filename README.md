@@ -5,6 +5,7 @@ Nesse trabalho faremos a construção de um dispositivo para o monitoramento das
 Além dos sensores, foi utilizado um Buzzer de tipo passivo, com o intuito de oferecer ao usuário uma interface simples de comunicação. 
 Para possibilitar o armazenamento dos dados fornecidos pelos sensores e permitir o monitoramento de seu funcionamento, o Arduino foi equipado com um Shield de data logger. 	Esse Shield é capaz de registrar as informações provenientes das portas do Arduino em um cartão SD, possibilitando o armazenamento dos dados de forma conveniente e acessível. 
 Com o objetivo de tornar o projeto mais user-friendly, optou-se por desenvolver uma interface física utilizando o software ShaprCAD. A case projetada oferece um design simples e sofisticado, com os sensores posicionados de forma externa, facilitando o contato com o ar ambiente. Além disso, foram providenciadas aberturas e acesso fácil a todas as entradas e saídas do Arduino, visando a comodidade na conexão e manipulação dos componentes. 
-<center><img src="Imagem do Arduino-02.jpeg" style="width:350px;height:200px"/></center>
+<div><img src="Imagem do Arduino-02.jpeg" style="width:350px;height:200px;margin-right:100px"/>
+<img src="Prototipo_Brabo.png" style="width:350px;height:200px"/></div>
 <b>Software</b> – estamos desenvolvendo a leitura dos sensores, junto a gráficos que explicitem de maneira gráfica aos usuários. Estamos estudando formas de armazenamento de dados ou saída desses para a internet. 
 
