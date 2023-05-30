@@ -1,7 +1,7 @@
 const int mq135AnalogPin = A0;
 const int mq135DigitalPin = 7;
 const int buzzerPin = 8;
-
+// geovana estude querida, obrigada
 
 
 void setup() {
