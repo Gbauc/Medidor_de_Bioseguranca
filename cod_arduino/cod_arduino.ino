@@ -3,8 +3,11 @@
 
 #include <Adafruit_BMP280.h>
 #include <MQUnifiedsensor.h>
+#include <SPI.h>
+#include <SD.h>
 Adafruit_BMP280 sensor_bmp;
 
+const int chipSelect = 10; // Pino de chip select do cartão SD
 const int temp_pres = A4;
 const int mq3AnalogPin = A3;
 const int mq7AnalogPin = A1;
@@ -28,6 +31,35 @@ float mq135AnalogValue;
 float mq135DigitalValue;
 
 void setup() {
+  Serial.begin(9600);
+
+  // Inicializa o cartão SD
+  if (!SD.begin(chipSelect)) {
+    Serial.println("Falha ao inicializar o cartão SD!");
+    return;
+  }
+
+  Serial.println("Cartão SD inicializado com sucesso!");
+
+  // Cria um arquivo para escrita
+  File dataFile = SD.open("dados_monitoramento.txt", FILE_WRITE);
+
+  if (dataFile) {
+    Serial.println("Arquivo aberto com sucesso!");
+
+    // Lê os dados do Arduino e grava no arquivo
+    for (int i = 0; i < 10; i++) {
+      int sensorData = analogRead(A0);
+      dataFile.println(sensorData);
+      delay(60000);
+    }
+
+    // Fecha o arquivo
+    dataFile.close();
+    Serial.println("Dados gravados com sucesso!");
+  } else {
+    Serial.println("Erro ao abrir o arquivo!");
+  }
   // pinMode(mq3DigitalPin, INPUT);
   // pinMode(mq7DigitalPin, INPUT);
   // pinMode(mq8DigitalPin, INPUT);
@@ -59,33 +91,33 @@ Serial.print("MQ-3 Analog: ");
 Serial.println(mq3AnalogValue);
 // Serial.print("MQ-3 Digital: ");
 // Serial.println(mq3DigitalValue);
-delay(1000);
+delay(60000);
 
 Serial.print("MQ-7 Analog: ");
 Serial.println(mq7AnalogValue);
 // Serial.print("MQ-7 Digital: ");
 // Serial.println(mq7DigitalValue);
-delay(1000);
+delay(60000);
 
 Serial.print("MQ-8 Analog: ");
 Serial.println(mq8AnalogValue);
 // Serial.print("MQ-8 Digital: ");
 // Serial.println(mq8DigitalValue);
-delay(1000);
+delay(60000);
 
 Serial.print("MQ-135 Analog: ");
 Serial.println(mq135AnalogValue);
 Serial.print("MQ-135 Digital: ");
 Serial.println(mq135DigitalValue);
-delay(1000);
+delay(60000);
 
 Serial.print("Temperatura(°C): ");
 Serial.println(ler_temp);
-delay(1000);
+delay(60000);
 
 Serial.print("Pressao (Pa)= ");
 Serial.println(ler_pres);
-delay(1000);
+delay(60000);
 
 // if (mq3DigitalPin == 0 || mq7DigitalPin == 0 || mq8DigitalPin == 0 || mq135DigitalValue == 0) 
 //  { digitalWrite(buzzerPin, HIGH);}
